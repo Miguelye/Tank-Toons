@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "BasePawn.h"
+#include "InputActionValue.h"
 #include "Tank.generated.h"
 
 /**
@@ -18,6 +19,8 @@ class TOONTANKS_API ATank : public ABasePawn
 public:
 	ATank();
 	void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent);
+	void Move(const FInputActionValue& Value);
+
 private:
 	//UPROPERTY(This are Macros most of them giving different levels of Access to variables, check notes for more info)
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
@@ -36,4 +39,6 @@ private:
 		class UInputAction* inputAim;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input", meta = (AllowPrivateAccess = "true"))
 		class UInputAction* inputFire;
+
+
 };

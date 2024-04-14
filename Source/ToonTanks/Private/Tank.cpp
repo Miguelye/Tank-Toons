@@ -37,5 +37,10 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) {
 	//Bind Move() to the mapping
 	//BindAction for enhanced system takes Action, ETriggerEvent, object, and function
 	//ETriggerEvent is an enum, where Triggered means "button is held down".
-	playerEIcomponent->BindAction(inputMoveForward, ETriggerEvent::Triggered, this, &ATank::Move);
+	playerEIcomponent->BindAction(inputMove, ETriggerEvent::Triggered, this, &ATank::Move);
+}
+
+void ATank::Move(const FInputActionValue& Value) {
+	//To bind to axis mapping: SetupPlayerInputComponent
+	UE_LOG(LogTemp, Display, TEXT("Float value: %f"), Value.Get<float>());
 }
