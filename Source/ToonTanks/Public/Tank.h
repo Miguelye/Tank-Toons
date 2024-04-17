@@ -18,8 +18,9 @@ class TOONTANKS_API ATank : public ABasePawn
 	GENERATED_BODY()
 public:
 	ATank();
-	void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent);
-	void Move(const FInputActionValue& Value);
+
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 private:
 	//UPROPERTY(This are Macros most of them giving different levels of Access to variables, check notes for more info)
@@ -40,5 +41,11 @@ private:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input", meta = (AllowPrivateAccess = "true"))
 		class UInputAction* inputFire;
 
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		float speed = 200.f;
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		float turnRate = 45.f;
 
+	void Move(const FInputActionValue& Value);
+	void Turn(const FInputActionValue& Value);
 };
