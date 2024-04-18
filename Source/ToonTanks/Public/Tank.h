@@ -22,6 +22,13 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 private:
 	//UPROPERTY(This are Macros most of them giving different levels of Access to variables, check notes for more info)
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
@@ -44,8 +51,10 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float speed = 200.f;
 	UPROPERTY(EditAnywhere, Category = "Movement")
-		float turnRate = 45.f;
+		float turnRate = 80.f;
 
 	void Move(const FInputActionValue& Value);
 	void Turn(const FInputActionValue& Value);
+
+	APlayerController* PlayerControllerRef;
 };

@@ -14,4 +14,19 @@ class TOONTANKS_API ATurretEnemy : public ABasePawn
 {
 	GENERATED_BODY()
 	
+public:
+
+	virtual void Tick(float DeltaTime);
+
+protected:
+
+	//Called whe the game starts or when spawned
+	virtual void BeginPlay() override;
+	
+private:
+
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+		float FireRange = 500.f;
+
+	class ATank* Tank;
 };

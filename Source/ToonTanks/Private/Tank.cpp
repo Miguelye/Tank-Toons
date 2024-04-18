@@ -9,6 +9,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "GameFramework/PlayerController.h"
 
 
 ATank::ATank()
@@ -41,6 +42,43 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) {
 	//ETriggerEvent is an enum, where Triggered means "button is held down".
 	playerEIcomponent->BindAction(inputMove, ETriggerEvent::Triggered, this, &ATank::Move);
 	playerEIcomponent->BindAction(inputTurn, ETriggerEvent::Triggered, this, &ATank::Turn);
+}
+
+// Called every frame
+void ATank::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	if (PlayerControllerRef)
+	{
+		FHitResult HitResult;
+
+		PlayerControllerRef->GetHitResultUnderCursor(
+			ECollisionChannel::ECC_Visibility, 
+			false, 
+			HitResult);
+		
+		//DrawDebugSphere(
+		//	GetWorld(),
+		//	HitResult.ImpactPoint,
+		//	20.f,
+		//	12,
+		//	FColor::Red,
+		//	false,
+		//	-1.f);
+
+		RotateTurret(HitResult.ImpactPoint);
+	}
+
+
+}
+
+// Called when the game starts or when spawned
+void ATank::BeginPlay()
+{
+	Super::BeginPlay();
+
+	PlayerControllerRef = Cast<APlayerController>(GetController());
 }
 
 void ATank::Move(const FInputActionValue& Value) 
