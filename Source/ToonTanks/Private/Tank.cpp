@@ -42,6 +42,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) {
 	//ETriggerEvent is an enum, where Triggered means "button is held down".
 	playerEIcomponent->BindAction(inputMove, ETriggerEvent::Triggered, this, &ATank::Move);
 	playerEIcomponent->BindAction(inputTurn, ETriggerEvent::Triggered, this, &ATank::Turn);
+	playerEIcomponent->BindAction(inputFire, ETriggerEvent::Started, this, &ATank::Fire);
 }
 
 // Called every frame
