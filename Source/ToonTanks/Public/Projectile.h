@@ -28,9 +28,15 @@ private:
 
 	//Pointers to hold the address of corresponding Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-		class UCapsuleComponent* CapsuleComp;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 		UStaticMeshComponent* BaseMesh;
 	UPROPERTY(VisibleAnywhere, Category = "Combat")
 		class UProjectileMovementComponent* ProjectileMovComp;
+
+	UFUNCTION()
+		void OnHit(
+			UPrimitiveComponent* HitComp,
+			AActor* OtherActor,
+			UPrimitiveComponent* OtherComp,
+			FVector NormalImpulse,
+			const FHitResult& Hit);
 };

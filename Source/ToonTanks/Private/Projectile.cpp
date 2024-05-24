@@ -14,21 +14,22 @@ AProjectile::AProjectile()
 	PrimaryActorTick.bCanEverTick = false;
 
 	//initializing pointers to components already created in UE5
-	CapsuleComp = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule Collider"));
-	RootComponent = CapsuleComp;
 
 	BaseMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Base Mesh"));
-	BaseMesh->SetupAttachment(CapsuleComp);
+	RootComponent = BaseMesh;
 
 	ProjectileMovComp = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement Comp"));
-	ProjectileMovComp->InitialSpeed = 1200.f;
-	ProjectileMovComp->MaxSpeed = 1200.f;
+	ProjectileMovComp->MaxSpeed = 400.f;
+	ProjectileMovComp->InitialSpeed = 400.f;
+
 }
 
 // Called when the game starts or when spawned
 void AProjectile::BeginPlay()
 {
 	Super::BeginPlay();
+
+	BaseMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
 	
 }
 
@@ -39,3 +40,16 @@ void AProjectile::Tick(float DeltaTime)
 
 }
 
+void AProjectile::OnHit(
+	UPrimitiveComponent* HitComp,
+	AActor* OtherActor,
+	UPrimitiveComponent* OtherComp,
+	FVector NormalImpulse,
+	const FHitResult& Hit)
+{
+	UE_LOG(LogTemp, Warning, TEXT("OnHit"));
+	UE_LOG(LogTemp, Warning, TEXT("HitComp: %s"), *HitComp->GetName());
+	UE_LOG(LogTemp, Warning, TEXT("OtherActor: %s"), *OtherActor->GetName());
+	UE_LOG(LogTemp, Warning, TEXT("OtherComp: %s"), *OtherComp->GetName());
+
+}
