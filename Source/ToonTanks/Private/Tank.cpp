@@ -58,15 +58,6 @@ void ATank::Tick(float DeltaTime)
 			ECollisionChannel::ECC_Visibility, 
 			false, 
 			HitResult);
-		
-		//DrawDebugSphere(
-		//	GetWorld(),
-		//	HitResult.ImpactPoint,
-		//	20.f,
-		//	12,
-		//	FColor::Red,
-		//	false,
-		//	-1.f);
 
 		RotateTurret(HitResult.ImpactPoint);
 	}
@@ -99,8 +90,6 @@ void ATank::Move(const FInputActionValue& Value)
 
 void ATank::Turn(const FInputActionValue& Value)
 {
-	UE_LOG(LogTemp, Display, TEXT("Float Turn value: %f"), Value.Get<float>());
-
 	FRotator DeltaRotation = FRotator::ZeroRotator;
 
 	//DeltaTime
