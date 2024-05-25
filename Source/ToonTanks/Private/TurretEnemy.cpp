@@ -25,6 +25,13 @@ void ATurretEnemy::BeginPlay()
 	GetWorldTimerManager().SetTimer(FireRateTimerHandle, this, &ATurretEnemy::CheckFireCondition, FireRate, true);
 }
 
+void ATurretEnemy::HandleDestruction()
+{
+	//Called the function from based class
+	Super::HandleDestruction();
+	Destroy();
+}
+
 void ATurretEnemy::CheckFireCondition()
 {
 	// Check to see if the Tank is in range

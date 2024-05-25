@@ -27,6 +27,12 @@ ABasePawn::ABasePawn()
 	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
 }
 
+void ABasePawn::HandleDestruction()
+{
+	//TODO: Visual/Sound Effects
+}
+
+
 void ABasePawn::RotateTurret(FVector LookAtTarget)
 {
 	//creating Vector from turret to where the mouse pointer is currently at on the world.
