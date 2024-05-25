@@ -22,6 +22,10 @@ protected:
 
 	virtual void BeginPlay() override;
 
+	//BlueprintImplementableEvent means that the implementation can be define in blueprints
+	//the function can still be called in code.
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartGame();
 
 private:
 
