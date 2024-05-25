@@ -34,8 +34,13 @@ void ATurretEnemy::HandleDestruction()
 
 void ATurretEnemy::CheckFireCondition()
 {
+	if (Tank == nullptr)
+	{
+		return;
+	}
+
 	// Check to see if the Tank is in range
-	if (InFireRange())
+	if (InFireRange() && Tank->isAlive)
 	{
 		// If in range, fire to the location of the tank
 		Fire();

@@ -8,6 +8,7 @@
 #include "GameFramework/DamageType.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
+#include "Camera/CameraShakeBase.h"
 
 
 
@@ -81,6 +82,10 @@ void AProjectile::OnHit(
 		if (HitSound)
 		{
 			UGameplayStatics::PlaySoundAtLocation(this, HitSound, GetActorLocation());
+		}
+		if (HitCameraShakeClass)
+		{
+			GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(HitCameraShakeClass);
 		}
 	}
 

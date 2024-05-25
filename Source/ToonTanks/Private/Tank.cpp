@@ -80,6 +80,7 @@ void ATank::HandleDestruction()
 	// Lets hide the tank instead of destroying it
 	SetActorHiddenInGame(true);
 	SetActorTickEnabled(false);
+	isAlive = false;
 }
 
 void ATank::Move(const FInputActionValue& Value) 
