@@ -14,5 +14,6 @@ class TOONTANKS_API AToonTankPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
+public:
 	void SetPlayerEnabledState(bool bPlayerEnabled);
 };
