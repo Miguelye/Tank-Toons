@@ -27,6 +27,9 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void StartGame();
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void GameOver(bool bWonGame);
+
 private:
 
 
@@ -38,4 +41,7 @@ private:
 
 	void HandleGameStart();
 
+	int32 TargetTurrets{ 0 };
+
+	int32 GetTargetTurretCount();
 };
